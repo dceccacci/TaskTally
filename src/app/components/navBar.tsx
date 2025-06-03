@@ -96,7 +96,18 @@ export default function NavBar() {
                 </Menu>
               </Box>
             ) : (
-              <Button color="inherit" onClick={handleGoogleLogin}>Login</Button>
+              <Box>
+                <Tooltip title="Signin">
+                  <IconButton onClick={handleGoogleLogin} sx={{ p: 0 }}>
+                    <Avatar
+                      src={"/avatar-default-icon.png"}
+                      alt={"Login"}
+                      sx={{ width: 46, height: 46, mr: 2, cursor: "pointer" }}
+                    />
+                  </IconButton>
+                </Tooltip>
+              {/* <Button color="inherit" onClick={handleGoogleLogin}>Login</Button> */}
+              </Box>
             )}
           </Box>
         </Toolbar>
