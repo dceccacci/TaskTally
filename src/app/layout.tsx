@@ -16,7 +16,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <UserContextProvider>
-          <header><NavBar/></header>
           <main>{children}</main>
         </UserContextProvider>
       </body>

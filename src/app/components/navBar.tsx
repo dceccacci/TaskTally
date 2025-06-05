@@ -46,7 +46,7 @@ export default function NavBar() {
         <Toolbar disableGutters sx={{ px: 2 }}>
           <Link href="/" style={{color: "#fff", textDecoration: 'none'}}>
             <Typography
-                variant="h6"
+                variant="h5"
                 noWrap
                 sx={{
                 mr: 2,
@@ -58,7 +58,49 @@ export default function NavBar() {
                 HOME
             </Typography>
           </Link>
-          <Box sx={{ flexGrow: 0, ml: "auto" }}>
+          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+            <Typography
+              variant="h4"
+              noWrap
+              sx={{
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: "#fff",
+              }}
+            >
+              Task Tally
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", ml: "auto" }}>
+            <Link href="/categories" style={{color: "#fff", textDecoration: 'none'}}>
+              <Typography
+                noWrap
+                sx={{
+                  mr: 2,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                }}
+              >
+                Categories
+              </Typography>
+            </Link>
+            <Link href="/stats" style={{color: "#fff", textDecoration: 'none'}}>
+              <Typography
+                noWrap
+                sx={{
+                  mr: 2,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                }}
+              >
+                Stats
+              </Typography>
+            </Link>
+            </Box>
+            <Box sx={{ flexGrow: 0, ml: "auto" }}>
             {user ? (
               <Box>
                 <Tooltip title="Open settings">
@@ -85,28 +127,20 @@ export default function NavBar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  <MenuItem>
-                    <Link href="/profile" style={{color: "#fff", textDecoration: 'none'}}>
-                      <Typography sx={{color: "black"}}>
-                        Profile
-                      </Typography>
-                    </Link>
-                  </MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </Box>
             ) : (
               <Box>
-                <Tooltip title="Signin">
+                <Tooltip title="Sign In">
                   <IconButton onClick={handleGoogleLogin} sx={{ p: 0 }}>
                     <Avatar
                       src={"/avatar-default-icon.png"}
-                      alt={"Login"}
+                      alt={"Sign-In"}
                       sx={{ width: 46, height: 46, mr: 2, cursor: "pointer" }}
                     />
                   </IconButton>
                 </Tooltip>
-              {/* <Button color="inherit" onClick={handleGoogleLogin}>Login</Button> */}
               </Box>
             )}
           </Box>
