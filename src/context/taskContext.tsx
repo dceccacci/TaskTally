@@ -48,6 +48,12 @@ export function TaskContextProvider({children}: {children: ReactNode}) {
         return unsubscribe
     }, []);
 
+    useEffect(()=> {
+        if(user) {
+            updateCategoriesInDB(user, categories);
+        }
+    }, [categories]);
+
     useEffect(() => {
         if (user) {
             getUserData(user.uid).then(data => {
@@ -75,7 +81,6 @@ export function TaskContextProvider({children}: {children: ReactNode}) {
     }
 
     async function updateTaskPause(categoryName: string, taskName: string, elapsed: number, isPaused: boolean, timeElapsed: {[date: string]: number}) {
-        console.log(isPaused)
         setCategories(prev =>
             prev.map(cat =>
                 cat.name === categoryName
@@ -103,7 +108,7 @@ export function TaskContextProvider({children}: {children: ReactNode}) {
                     }
                 : cat
             );
-            await updateCategoriesInDB(user, updated);
+            // await updateCategoriesInDB(user, updated);
         }
     }
 
@@ -120,7 +125,11 @@ export function TaskContextProvider({children}: {children: ReactNode}) {
                         ),
                     }
                     : cat
-    ));}
+        ));
+        if(user){
+            // await updateCategoriesInDB(user, categories);
+        }
+    }
     
     return(
         <TaskContext.Provider value={{user, categories, updateTaskPause, updateTaskDone, setUser, addCategory, addTask}}>{children}</TaskContext.Provider>

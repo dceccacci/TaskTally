@@ -42,10 +42,10 @@ export default function CategoryTable({ idx }: { idx: number }) {
   
   useEffect(()=>{
     if(categories[idx]){
-      setCategory(categories[idx]),
-      setTasks(categories[idx].tasks)
+      setCategory(categories[idx]);
+      setTasks(categories[idx].tasks);
     }
-  }, [categories[idx]])
+  }, [categories[idx]]);
   
   useEffect(() => {
     if (tasks) {
@@ -53,19 +53,20 @@ export default function CategoryTable({ idx }: { idx: number }) {
       setPaused(tasks.map(task => task.isPaused));
       setElapsedTimes(prev => {
         if (prev && prev.length === tasks.length) return prev;
-
         return tasks.map(task => {
           const now = Date.now();
           const timeMap = task.timeElapsed || {};
           const entries = Object.values(timeMap);
-
           if (entries.length === 0) {
             return now - new Date(task.startTime).getTime();
-          }
-
-          return entries
+          } else {
+            return entries
             .filter(val => val > 0)
             .reduce((sum, val) => sum + val, 0);
+          }
+          // return entries
+          //   .filter(val => val > 0)
+          //   .reduce((sum, val) => sum + val, 0);
         });
       });
     }
@@ -99,11 +100,12 @@ export default function CategoryTable({ idx }: { idx: number }) {
 
     const timeKeys = Object.keys(timeElapsed);
     let lastKey = null;
-    let lastValue = null;
+    // let lastValue = null;
     if (timeKeys.length > 0) {
       lastKey = timeKeys[timeKeys.length - 1];
-      lastValue = timeElapsed[lastKey];
+      // lastValue = timeElapsed[lastKey];
     }
+
     let newValue = 0;
     if (!lastKey) {
       newValue = (now - new Date(task.startTime).getTime());
