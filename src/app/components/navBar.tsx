@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import { AppBar, Toolbar, Typography,  Container, Box, Avatar, Button, Tooltip, IconButton, Menu, MenuItem } from '@mui/material'
-import { useUserContext, logOut, googleSignIn } from "@/context/userContext";
+import { useTaskContext, logOut, googleSignIn } from "@/context/taskContext";
 import { useState } from "react";
 
 /*
@@ -20,11 +20,11 @@ NavBar buttons do the following:
 
 
 export default function NavBar() {
-  const {user} = useUserContext();
+  const {user, setUser} = useTaskContext();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   function handleLogout(){
-    logOut();
+    logOut(setUser);
   }
 
   function handleGoogleLogin(){
@@ -44,20 +44,6 @@ export default function NavBar() {
   return (
     <AppBar position="static">
         <Toolbar disableGutters sx={{ px: 2 }}>
-          <Link href="/" style={{color: "#fff", textDecoration: 'none'}}>
-            <Typography
-                variant="h5"
-                noWrap
-                sx={{
-                mr: 2,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                }}
-            >
-                HOME
-            </Typography>
-          </Link>
           <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
             <Typography
               variant="h4"
@@ -73,7 +59,7 @@ export default function NavBar() {
             </Typography>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", ml: "auto" }}>
-            <Link href="/categories" style={{color: "#fff", textDecoration: 'none'}}>
+            <Link href="/" style={{color: "#fff", textDecoration: 'none'}}>
               <Typography
                 noWrap
                 sx={{

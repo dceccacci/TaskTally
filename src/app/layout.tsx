@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import NavBar from "./components/navBar";
-import { UserContextProvider } from "@/context/userContext";
+import { TaskContextProvider } from "@/context/taskContext";
 
 export const metadata: Metadata = {
   title: "TaskTally",
@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <UserContextProvider>
+        <TaskContextProvider>
           <main>{children}</main>
-        </UserContextProvider>
+        </TaskContextProvider>
       </body>
     </html>
   );

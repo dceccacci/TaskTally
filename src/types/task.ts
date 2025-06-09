@@ -1,3 +1,7 @@
+type TimeElapsed = {
+  [date: string]: number; // e.g., "2025-06-08": 1800000
+};
+
 export type Task = {
     name: string,
     dueDate: string,
@@ -5,5 +9,6 @@ export type Task = {
     elapsed: number,
     isPaused: boolean,
     pauseTime?: string,
-    done?: boolean
+    done?: boolean,
+    timeElapsed?: TimeElapsed
 }
