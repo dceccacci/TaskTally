@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { AppBar, Toolbar, Typography,  Container, Box, Avatar, Button, Tooltip, IconButton, Menu, MenuItem } from '@mui/material'
+import { AppBar, Toolbar, Typography, Box, Avatar, Tooltip, IconButton, Menu, MenuItem } from '@mui/material'
 import { useTaskContext, logOut, googleSignIn } from "@/context/taskContext";
 import { useState } from "react";
 
@@ -29,7 +29,7 @@ export default function NavBar() {
 
   function handleGoogleLogin(){
     googleSignIn();
-    handleCloseUserMenu
+    handleCloseUserMenu();
   }
   
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

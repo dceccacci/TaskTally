@@ -16,10 +16,7 @@ import {
     query, 
     where, 
     getDocs, 
-    setDoc,
-    updateDoc,
-    arrayUnion,
-    arrayRemove } from "firebase/firestore"
+    setDoc } from "firebase/firestore"
 
 import {auth} from "../services/firebase"
 import {db} from "@/services/firebase"
@@ -54,6 +51,7 @@ export function TaskContextProvider({children}: {children: ReactNode}) {
         }
     }, [categories]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (user) {
             getUserData(user.uid).then(data => {
@@ -95,21 +93,21 @@ export function TaskContextProvider({children}: {children: ReactNode}) {
                     : cat
             )
         );
-        if (user) {
-            const updated = categories.map(cat =>
-                cat.name === categoryName
-                ? {
-                    ...cat,
-                    tasks: cat.tasks.map(task =>
-                        task.name === taskName
-                        ? { ...task, elapsed, isPaused, timeElapsed }
-                        : task
-                    ),
-                    }
-                : cat
-            );
-            // await updateCategoriesInDB(user, updated);
-        }
+        // if (user) {
+        //     const updated = categories.map(cat =>
+        //         cat.name === categoryName
+        //         ? {
+        //             ...cat,
+        //             tasks: cat.tasks.map(task =>
+        //                 task.name === taskName
+        //                 ? { ...task, elapsed, isPaused, timeElapsed }
+        //                 : task
+        //             ),
+        //             }
+        //         : cat
+        //     );
+        //     // await updateCategoriesInDB(user, updated);
+        // }
     }
 
     async function updateTaskDone(categoryName: string, taskName: string, done: boolean) {

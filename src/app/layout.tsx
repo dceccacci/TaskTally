@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import NavBar from "./components/navBar";
 import { TaskContextProvider } from "@/context/taskContext";
 
 export const metadata: Metadata = {

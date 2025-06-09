@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import { Task } from '@/types/task';
 
 export default function Home() {
-  const {user, categories, addCategory, addTask} = useTaskContext();
+  const {categories, addCategory, addTask} = useTaskContext();
 
   const [open, setOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
